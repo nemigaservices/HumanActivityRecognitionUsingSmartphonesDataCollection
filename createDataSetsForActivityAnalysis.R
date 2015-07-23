@@ -34,7 +34,7 @@ readAndSelectColumnsDefinitions<-function(rootDirectory){
 # type - type of the data. The only allowed values are 'train' or 'test'
 # colDefs - definitions of columns that are to be left in the dataset
 # activityLabels - definitions of activity 
-createVariablesDataSet<-function(rootDirectory, type, colDefs,activityLabels){
+createDataSet<-function(rootDirectory, type, colDefs,activityLabels){
     # Check the input
     if (!(type %in% c("train", "test"))){
         stop(paste("Cannot determine the type of the data to read: incorrect value ",type,". Allowed values: 'train' or 'test'"));
@@ -64,10 +64,27 @@ createVariablesDataSet<-function(rootDirectory, type, colDefs,activityLabels){
     ds<-cbind(subjectDs,activityDs,ds)
     # need to rename the column
     ds<-dplyr::rename(ds, activityName=activityDs)
+    ds
+}
+
+
+# Reads all the necessary data containing in the root directory and generates the dataset by
+# cleansing and combining the data from test and train
+generateDataSet<-function(rootDirectory){
+    # Read activityLabels data
+    activityLabelsDs<-readActivityLabels(rootDirectory)
     
-    # cleanup - drop unneded data
-    rm(activityDs)
-    rm(subjectDs)
+    # Read columns definitions
+    colDefsDs<-readAndSelectColumnsDefinitions(rootDirectory)
+    
+    # Read test data
+    ds<-createDataSet(rootDirectory,type = "test",colDefs = colDefsDs, activityLabels = activityLabelsDs)
+    
+    # Read train data
+    trainDs<-createDataSet(rootDirectory,type = "train",colDefs = colDefsDs, activityLabels = activityLabelsDs)
+    
+    # Combine together
+    ds<-rbind(ds, trainDs)
     ds
 }
 
