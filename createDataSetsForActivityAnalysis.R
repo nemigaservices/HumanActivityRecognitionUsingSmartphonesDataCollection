@@ -70,7 +70,18 @@ createDataSet<-function(rootDirectory, type, colDefs,activityLabels){
 
 # Reads all the necessary data containing in the root directory and generates the dataset by
 # cleansing and combining the data from test and train
-generateDataSet<-function(rootDirectory){
+# fileUrl contains the url for the file to download, if NULL is specified uses the default URL - the one that is given for the project
+generateDataSet<-function(fileUrl=NULL){
+    # download files 
+    fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+    if (!file.exists("data")){
+        dir.create("data")
+    }
+    download.file(url=fileUrl, destfile='./data/smartphonesdata.zip', method="curl")
+    unzip('./data/smartphonesdata.zip', exdir = "./data")
+    
+    rootDirectory<-"./data/UCI HAR Dataset"
+    
     # Read activityLabels data
     activityLabelsDs<-readActivityLabels(rootDirectory)
     
@@ -79,12 +90,15 @@ generateDataSet<-function(rootDirectory){
     
     # Read test data
     ds<-createDataSet(rootDirectory,type = "test",colDefs = colDefsDs, activityLabels = activityLabelsDs)
+    print(paste("Test data set contains ",nrow(ds)," rows."))
     
     # Read train data
     trainDs<-createDataSet(rootDirectory,type = "train",colDefs = colDefsDs, activityLabels = activityLabelsDs)
+    print(paste("Train data set contains ",nrow(trainDs)," rows."))
     
     # Combine together
     ds<-rbind(ds, trainDs)
+    print(paste("Final data set contains ",nrow(ds)," rows."))
     ds
 }
 
