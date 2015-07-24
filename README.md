@@ -14,9 +14,9 @@ The data stored in archive contains:
 * Reference between Activity ID and Activity Name (specified in activity_labels.txt)
 * List of the features - i.e. names of the columns in the values dataset (specified in features.txt)
 * Train and test datasets (respectively in _train_ and _test_ directories) each one containing:
-+ File with subject IDs where each row corresponds to a single observation (subject_tests.txt)
-+ File with activity IDs where each row corresponds to a single observation (y_<test/train>.txt)
-+ File with sensor readings where each row corresponds to a single observation (X_<test/train>.txt)
+** File with subject IDs where each row corresponds to a single observation (subject_tests.txt)
+** File with activity IDs where each row corresponds to a single observation (y_<test/train>.txt)
+** File with sensor readings where each row corresponds to a single observation (X_<test/train>.txt)
 
 For both training and test datasets, the script:
 * Loads the sensor readings
