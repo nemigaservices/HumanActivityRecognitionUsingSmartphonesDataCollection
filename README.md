@@ -36,7 +36,7 @@ _ds<-generateAnalysisDataAndSummaryData()_
 
 ### Script parameters
 * __fileUrl__, default _NULL_. If specified, uses the URL to specify the location with an archive. If not specified (NULL) uses default file mentioned above.
-* __saveFile__, defalut _humanActivityRecognitionUsingSmartPhonesAvgBySubjectAndActivity.csv_. Allows specifying the path/name for the CSV file with averages of the means and standard deviations for the sensors readings.
+* __saveFile__, defalut _humanActivityRecognitionUsingSmartPhonesAvgBySubjectAndActivity.txt. Allows specifying the path/name for the CSV file with averages of the means and standard deviations for the sensors readings.
 
 ### Dependences
 Script is dependent on the following libraires: dplyr, plyr, reshape2

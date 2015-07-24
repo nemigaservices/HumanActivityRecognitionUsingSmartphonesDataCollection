@@ -113,7 +113,7 @@ generateTidyDataSetWithAverages<-function(dataset, colDefs, saveFile){
     tidyColNames<-c("subjectId","activityName", paste("Avg-", colDefs$ColumnName, sep=""))
     colnames(tidyDs)<-tidyColNames
     # Save the data to a CSV file
-    write.csv(tidyDs, saveFile, row.names=FALSE)
+    write.table(tidyDs, saveFile, row.names=FALSE)
     print(paste("Generated file",saveFile,"with ",nrow(tidyDs),"rows."))
 }
 
@@ -124,7 +124,7 @@ generateTidyDataSetWithAverages<-function(dataset, colDefs, saveFile){
 # fileUrl contains the url for the file to download, if NULL is specified uses the default URL - the one that is given for the project
 # saveFile - path for the result file to save. If not specified, file will be saved in the directory of execution with 
 # the name humanActivityRecognitionUsingSmartPhonesAvgBySubjectAndActivity.csv
-generateAnalysisDataAndSummaryData=function(fileUrl=NULL, saveFile="humanActivityRecognitionUsingSmartPhonesAvgBySubjectAndActivity.csv"){
+generateAnalysisDataAndSummaryData=function(fileUrl=NULL, saveFile="humanActivityRecognitionUsingSmartPhonesAvgBySubjectAndActivity.txt"){
     # download files 
     if (is.null(fileUrl))
         fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
