@@ -19,13 +19,13 @@ The data stored in archive contains:
 - File with sensor readings where each row corresponds to a single observation (X_test/train.txt)
 
 ### Script execution
-1. For both training and test datasets, the script:
+__For both training and test datasets, the script:__
 * Loads the sensor readings (X_test/train.txt file)
 * Removes the columns that do not contain mean or standard deviation. In order to achieve that, the script reads the list of the features into another dataset and removes the features whose names do not contain _mean_ or _std_. Afterwards the script uses the resulting dataset to determine which columns should be kept in the sensors readings. The resulting columns of the sensors are renamed to match the names of the features as specified in features.txt.
 * Adds the column with the Subject Ids
 * Adds the column with Activity information. This column contains the names of the activities that are achieved by joining the data read from the activities Ids (y_test/train.txt file) with the activiy labels (file activity_labels.txt). 
-2. Combines both train and test data
-3. Generates and saves the summary data file with the averages of all sensor data variables by Subject and Activity. The file contains similar columns (See CodeBook.md) where the "Avg-" is added to the column names to indicate that they contain averages.
+__Combines both train and test data__
+__Generates and saves the summary data file with the averages of all sensor data variables by Subject and Activity. The file contains similar columns (See CodeBook.md) where the "Avg-" is added to the column names to indicate that they contain averages.__
 
 ## Installation instructions
 * Download run_analysis.R to your current R directory
